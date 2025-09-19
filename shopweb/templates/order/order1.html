@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% block styles %}
+    {{ super() }}
+    <style>
+    .right{
+        text-align: right;
+
+    }
+    .order{
+        width: 620px;
+        margin: auto;
+    }
+    </style>
+{% endblock %}
+{% block container %}
+    <center>
+<table border="1" width="600px" class="shopcar">
+<tr><td colspan="7" style="text-align: center"><h1>结算中心</h1></td></tr>
+<tr>
+    <th>购物编号</th>
+    <th>会员名</th>
+     <th>商品编号</th>
+     <th>商品名称</th>
+     <th>单价</th>
+     <th>数量</th>
+    <th>金额</th>
+
+</tr>
+    {% for p,s in shops %}
+    <tr>
+        <td>{{ s.id }}</td>
+        <td>{{ s.username }}</td>
+        <td>{{ p.pid }}</td>
+        <td>{{ p.pname }}</td>
+        <td>{{ p.price }}</td>
+        <td>{{ s.pnum1 }}</td>
+        <td>{{ p.price*s.pnum1 }}</td>
+
+    </tr>
+    {% endfor %}
+    <tr>
+        <td colspan="8">总金额为：{{ sum }}</td>
+    </tr>
+</table>
+    </center>
+    <form action="/order1" method="post" class="order">
+      <table   width="600px">
+          <tr>
+              <td colspan="3">付款方式：</td>
+          </tr>
+          <tr>
+              <td>&nbsp;</td>
+              <td class="right">
+                  请选择您的付款方式：
+              </td>
+              <td>
+                  <select name="pay_fangshi">
+                      <option value="0">请选择付款方式</option>
+                      <option value="银行支付">银行支付</option>
+                      <option value="微信">微信</option>
+                      <option value="支付宝">支付宝</option>
+                  </select>
+              </td>
+          </tr>
+          <tr>
+              <td>&nbsp;</td>
+              <td class="right">
+                  请选择您的地址：
+              </td>
+              <td><input type="text" name="pay_address"></td>
+          </tr>
+          <tr>
+              <td>&nbsp;</td>
+              <td class="right">
+                  请选择您的邮箱：
+              </td>
+              <td><input type="text" name="pay_email"></td>
+          </tr>
+          <tr>
+             <td colspan="3" style="text-align: center"><input type="submit" value="确定付款"> <button>取消</button></td>
+          </tr>
+      </table>
+
+    </form>
+{% endblock %}

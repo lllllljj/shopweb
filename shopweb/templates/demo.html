@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    #wrapper{
+        background-color: skyblue;
+        width: 300px;
+        height: 100px;
+    }
+</style>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<body>
+    <input type="text" name="username" id="uname"><br/>
+    <input type="button" value="提交" onclick="test()">
+    <div id="wrapper"></div>
+<script>
+    function test(){
+    var uname=$('#uname').val()  //获取文本框的值
+        console.log(uname)
+    $.ajax({
+        url:'/demo',
+        type:'POST',
+        data:{'username':uname,'age':20},
+        success:function (res){  //回调函数
+            $('#wrapper').text(res.username);
+            $('#wrapper').css('color','red');
+            {#$('#wrapper').css('backgroundcolor','black');#}
+            {#$('#wrapper').text(res['username']);#}
+        },
+        error:function (){
+            alert('请求失败')
+        }
+    })
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>小米案例练习</title>
+	<style>
+		/*清除元素默认内外边距样式*/
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		/*清除列表样式 前面的小点点*/
+		li {
+			list-style: none;
+		}
+		.box {
+			width: 1226px;
+			height: 615px;
+			background-color: pink;
+			margin: auto;
+		}
+		.left {
+			float: left;
+			width: 234px;
+			height: 615px;
+			background-color: purple;
+		}
+		.left img {
+			/*width: 234px;*/
+			width: 100%;
+		}
+		.right {
+			float: right;
+			width: 992px;
+			height: 615px;
+			background-color: skyblue;
+		}
+		.right li {
+			float: left;
+			width: 234px;
+			height: 300px;
+			background-color: pink;
+			margin-left: 14px;
+			margin-bottom: 14px;
+		}
+        .right li img{
+            width: 100%;
+            height: 260px;
+        }
+        .right li p{
+            width: 100%;
+            height: 40px;
+            {#水平居中#}
+            text-align: center;
+            {#垂直居中#}
+            line-height: 40px;
+        }
+	</style>
+</head>
+<body>
+{{ username }}
+	<div class="box">
+		<div class="left">
+{#			<img src="static/images/mi.jpg" alt="">#}
+            <img src="{{ url_for('static',filename='images/mi.jpg') }}">
+		</div>
+		<ul class="right">
+            {%for product in products  %}
+			<li>
+                <img src="{{ url_for('static',filename=product.pimage) }}">
+                <p>{{ product.pname }} {{ product.price }}￥</p>
+            </li>
+            {% endfor %}
+		</ul>
+	</div>
+</body>
+</html>

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block styles %}
+    {{ super() }}
+    <style>
+        .form-container {
+            border: 1px solid black; /* 添加边框 */
+            padding: 20px;
+            display: inline-block; /* 使其宽度根据内容调节 */
+        }
+    </style>
+{% endblock %}
+{% block container %}
+    <center>
+    <h1>用户更新</h1>
+    <div class="form-container">
+        <form action="{{ url_for('user.user_update') }}" method="post">
+            <p><input type="hidden" name="uid" value="{{ user.id }}"></p>
+            <p><input type="text" name="username" value="{{ user.username }}"></p>
+            <p><input type="password" name="pwd" value="{{ user.password }}"></p>
+            <p><input type="text" name="phone" value="{{ user.phone }}"></p>
+            <p><input type="submit" value="更新"></p>
+        </form>
+    </div>
+    </center>
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block styles %}
+    {{ super() }}
+    <style>
+        .lh {
+            height: 30px;
+        }
+        .order-table {
+            margin: 20px auto;
+            border-collapse: collapse;
+            width: 800px;
+            background-color: #f8f8f8;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .order-table td, .order-table th {
+            padding: 10px;
+            border: 1px solid #dddddd;
+            text-align: left;
+        }
+        .order-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .order-table tr:hover {
+            background-color: #e8f4f8;
+        }
+        .order-table th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .order-title {
+            color: red;
+        }
+    </style>
+{% endblock %}
+{% block container %}
+<table class="order-table">
+    <tr>
+        <td colspan="2" align="center"><h1 class="order-title">订单详细信息</h1></td>
+    </tr>
+    <tr style="height: 20px">
+        <td colspan="2"></td>
+    </tr>
+    <tr class="lh">
+        <td>用户名: {{ session['uname'] }}</td>
+        <td>订单号：<span class="order-title">{{ session['order_number'] }} 请记住你的订单号</span></td>
+    </tr>
+    <tr class="lh">
+        <td>订单人的 email: {{ session['pay_email'] }}</td>
+        <td>订单时间: {{ session['o_time'] }}</td>
+    </tr>
+    <tr class="lh">
+        <td colspan="2">订单人的地址: {{ session['pay_address'] }}</td>
+    </tr>
+    <tr class="lh">
+        <td colspan="2">付款方式: {{ session['pay_fangshi'] }}</td>
+    </tr>
+</table>
+{% endblock %}

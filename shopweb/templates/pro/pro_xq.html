@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block styles %}
+    {{ super() }}
+    <style>
+    #cen{
+        width: 600px;
+        height: 400px;
+        margin: auto;
+    }
+    </style>
+{% endblock %}
+{% block container %}
+    <div id="cen">
+        <table width="400px">
+        <tr>
+            <td rowspan="5"><img src="{{ url_for('static',filename=product.pimage) }}"></td>
+            <td>商品名称:{{ product.pname }}</td>
+        </tr>
+        <tr>
+            <td>商品类型:{{ product.ptype }}</td>
+        </tr>
+        <tr>
+            <td>商品单价:{{ product.price }}</td>
+        </tr>
+        <tr>
+            <td>商品库存:{{ product.pnum }}</td>
+        </tr>
+        <tr>
+            <td><input type="button" value="购买" onclick="shop('{{ product.pid }}')"></td>
+        </tr>
+    </table>
+    </div>
+{% endblock %}
+{% block scripts %}
+    {{ super() }}
+    <script>
+    function shop(pid){
+        location.href='/shopcar/shop_add?pid='+pid;
+    }
+    </script>
+{% endblock %}

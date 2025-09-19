@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block styles %}
+    {{ super() }}
+    <style>
+     tr,th,td{
+         text-align: center;
+     }
+     table{
+         width: 500px;
+     }
+    </style>
+{% endblock %}
+{% block container %}
+    <center>
+    <p>当前用户人数：{{ users|length }}人</p>
+    <table border="1">
+        <tr>
+            <th>序号</th>
+            <th>用户名</th>
+            <th>密码</th>
+            <th>手机号</th>
+            <th></th>
+        </tr>
+        {% for user in users %}
+        <tr>
+            <td>{{ loop.index }}</td>
+            <td>{{ user.username }}</td>
+            <td>{{ user.password }}</td>
+            <td>{{ user.phone }}</td>
+            <td><a href="{{ url_for('user.user_update',uid=user.id) }}">更新</a>&nbsp;&nbsp;
+{#                <a href="javascript:void(0)" onclick="del({{ user.id }})">删除</a></td>#}
+                <a href="{{ url_for('user.user_del',uid=user.id) }}">删除</a>
+        </tr>
+        {% endfor %}
+    </table>
+    </center>
+{% endblock %}
+{% block scripts %}
+    {{ super() }}
+    <script>
+      function del(id){
+          location.href='/user_del?uid='+id
+      }
+    </script>
+{% endblock %}
+

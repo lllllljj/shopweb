@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>商品添加</title>
+    <style>
+        form {
+            width: 500px;
+            margin: auto;
+            text-align: center;
+            border: 1px solid black; /* 给表单添加黑色边框 */
+            padding: 20px; /* 添加一些内边距使内容和边框不贴在一起 */
+            box-shadow: 3px 3px 5px #aaaaaa; /* 添加阴影效果，使边框更显眼 */
+            background-image: url('path/to/your/background_image.jpg'); /* 设置背景图片 */
+            background-size: cover; /* 背景图片覆盖整个表单 */
+            background-repeat: no-repeat; /* 防止背景图片重复 */
+            background-position: center center; /* 背景图片居中 */
+        }
+        form p {
+            margin: 10px 0; /* 输入框和按钮的上下间距 */
+        }
+        form input[type="text"], form input[type="file"] {
+            width: 80%; /* 输入框和文件选择框宽度 */
+            padding: 5px; /* 增加输入框内部的填充 */
+        }
+        form input[type="submit"] {
+            padding: 10px 20px; /* 调整提交按钮的内边距 */
+        }
+    </style>
+</head>
+<body>
+<form action="{{ url_for('product.pro_add') }}" method="post" enctype="multipart/form-data">
+    <p>商品添加</p>
+    <p><input type="text" placeholder="请输入商品编号" name="pid"></p>
+    <p><input type="text" placeholder="请输入商品名称" name="pname"></p>
+    <p><input type="text" placeholder="请输入价格" name="price"></p>
+    <p><input type="text" placeholder="请输入库存" name="pnum"></p>
+    <p><input type="text" placeholder="请输入商品类型" name="ptype"></p>
+    <p><input type="file" name="pimage"></p>
+    <p><input type="submit" value="商品添加"></p>
+</form>
+</body>
+</html>

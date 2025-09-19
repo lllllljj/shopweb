@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block title %}
+用户注册
+{% endblock %}
+{% block styles %}
+{{ super() }}
+<style>
+    .reg {
+        width: 600px;
+        margin: auto;
+        text-align: center;
+        border: 1px solid red; /* 给外部容器添加边框 */
+        padding: 20px; /* 添加一些内边距使内容和边框不贴在一起 */
+    }
+    form {
+        width: 100%; /* 使表单占据容器宽度 */
+    }
+    .reg input[type="text"], .reg input[type="password"] {
+        width: 80%; /* 输入框宽度 */
+        margin: 10px 0; /* 输入框的上下间距 */
+    }
+</style>
+{% endblock %}
+{% block container %}
+<div class="reg">
+    <h1>用户注册</h1>
+    <form action="/user_register" method="post">
+        <p><input type="text" placeholder="请输入用户名" name="username"></p>
+        <p><input type="password" placeholder="请输入密码" name="password"></p>
+        <p><input type="password" placeholder="请再次输入密码" name="repassword"></p>
+        <p><input type="text" placeholder="请输入手机号" name="phone"></p>
+        <p><input type="submit" value="注册"></p>
+    </form>
+</div>
+{% endblock %}

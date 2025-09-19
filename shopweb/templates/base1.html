@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        {% block mytitle %}
+            这是父模板
+        {% endblock %}
+    </title>
+</head>
+<style>
+    .banner,.header,.middle,.footer{
+        margin: 0 auto;
+    }
+    *{
+        padding: 0;
+        margin: 0;
+    }
+    .middle{
+        height: 500px;
+        width: 1226px;
+        background-color: aqua;
+    }
+    .footer{
+        height: 100px;
+        width: 1226px;
+        background-color: blueviolet;
+    }
+    .banner{
+        display: block;
+        width: 1226px;
+        height: 150px;
+    }
+    .header{
+        background-color: red;
+        height: 50px;
+        width: 1226px;
+    }
+    .header ul li{
+        float: left;
+        height: 50px;
+        width: 100px;
+        text-align: center;
+        font-size: 18px;
+        line-height: 50px;
+        list-style: none;
+
+    }
+    .header ul li a{
+        text-decoration:none;
+    }
+</style>
+{% block mystyle %}
+{% endblock %}
+<body>
+<img src="../static/banner.jpg" class="banner"/>
+<div class="header">
+<ul>
+    <li><a href="/product/pro_show">首页</a></li>
+    <li><a href="/user_register">会员注册</a></li>
+    <li><a href="/product/pro_add">商品添加</a></li>
+    <li><a href="/user_login">登录</a></li>
+    <li><a href="/user_show">会员管理</a></li>
+</ul>
+</div>
+<div class="middle">
+    {% block middle %}
+        这是中间部分
+    {%endblock %}
+</div>
+<div class="footer">
+    {% block myfooter %}
+        这是尾部Copyright@22data2
+    {% endblock %}
+</div>
+</body>
+</html>
+
+{% block myjs %}
+{% endblock %}

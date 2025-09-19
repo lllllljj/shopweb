@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% block container %}
+<center>
+当前购物数量有:{{ shops|length }}种商品
+<table border="1" width="600px" class="shopcar">
+<tr>
+    <th>购物编号</th>
+    <th>会员名</th>
+     <th>商品编号</th>
+     <th>商品名称</th>
+     <th>单价</th>
+     <th>数量</th>
+    <th>金额</th>
+    <th>操作</th>
+</tr>
+    {% for p,s in shops %}
+    <tr>
+        <td>{{ s.id }}</td>
+        <td>{{ s.username }}</td>
+        <td>{{ p.pid }}</td>
+        <td>{{ p.pname }}</td>
+        <td>{{ p.price }}</td>
+        <td><input type="number" id="num{{ s.id }}" value="{{ s.pnum1 }}" oninput="updateNum('{{ s.id }}')" min="0"></td>
+        <td>{{ p.price*s.pnum1 }}</td>
+        <td><a href="{{ url_for('shopcar.shop_delete',sid=s.id) }}">删除</a></td>
+    </tr>
+    {% endfor %}
+    <tr>
+        <td colspan="8">总金额为：{{ sum }}</td>
+    </tr>
+<tr>
+    <td colspan="8">
+        <input type="button" onclick="location.href='/index'" value="继续购物">
+        <input type="button" onclick="location.href='/order1' " value="去收银台结账">
+        <input type="button" value="清空购物车" onclick="location.href='/shopcar/shop_clear'"></td>
+</tr>
+</table>
+</center>
+{% endblock %}
+{% block styles %}
+    {{ super() }}
+    <style>
+    .shopcar td,.shopcar th{
+        text-align: center;
+    }
+    </style>
+{% endblock %}
+{% block scripts %}
+{{ super() }}
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+    <script>
+    function updateNum(sid){
+        var num=$('#num'+sid).val();  //获取文本框最新的值
+        if(num>0) {
+            $.ajax({
+                url: '/shopcar/shopcar_update',
+                type: 'POST',
+                data: {
+                    'sid': sid,
+                    'pnum1': num
+                },
+                success: function (res) {
+                    location.href = '/shopcar/shop_count'
+                },
+                error: function () {
+                    console.log('dsfs');
+                }
+            })
+        }
+        else{
+            alert('数量已经是0，不能在减少')
+        }
+    }
+    </script>
+{% endblock %}
